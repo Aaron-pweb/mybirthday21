@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It Is My Birthday! 🎂</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            color: #333;
+            padding: 20px;
+            position: relative;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            opacity: 0.7;
+            z-index: -1;
+            border-radius: 2px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            padding: 50px 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+            border: 4px solid rgba(255, 215, 0, 0.4);
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #26A5E4, #0088cc);
+            z-index: -1;
+            animation: gradientShift 12s ease infinite;
+            background-size: 400% 400%;
+            border-radius: 30px;
+            opacity: 0.3;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #d35400, #e74c3c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .birthday-icon {
+            font-size: 6rem;
+            margin: 30px 0;
+            color: #e74c3c;
+            animation: bounce 2s infinite;
+            text-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
+        }
+
+        .message {
+            font-size: 1.35rem;
+            line-height: 1.7;
+            margin: 30px 0;
+            color: #444;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            padding: 0 5px;
+            font-size: 1.4rem;
+        }
+
+        .platforms {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .platform {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            border: 3px solid transparent;
+            min-width: 220px;
+        }
+
+        .platform:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .platform i {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .telegram {
+            background: linear-gradient(135deg, #26A5E4 0%, #0088cc 100%);
+            color: white;
+        }
+
+        .telegram:hover {
+            border-color: #26A5E4;
+        }
+
+        .email {
+            background: linear-gradient(135deg, #d44638 0%, #c53727 100%);
+            color: white;
+        }
+
+        .email:hover {
+            border-color: #d44638;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            background: rgba(231, 76, 60, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .contact-info span {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 70px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1);
+        }
+
+        .balloon:before {
+            content: "";
+            position: absolute;
+            bottom: -20px;
+            left: 30px;
+            width: 2px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .balloon:after {
+            content: "";
+            position: absolute;
+            bottom: -25px;
+            left: 28px;
+            width: 6px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .birthday-text {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            background: linear-gradient(45deg, #ff0000, #ff9900, #ffcc00, #33cc33, #3399ff, #cc33ff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow 8s ease infinite;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (max-width: 650px) {
+            h1 { font-size: 2.8rem; }
+            .birthday-icon { font-size: 4.5rem; }
+            .message { font-size: 1.15rem; }
+            .platforms { gap: 20px; }
+            .container { padding: 35px 25px; }
+            .platform { padding: 20px 30px; min-width: 180px; }
+            .birthday-text { font-size: 3rem; }
+        }
+
+        @media (max-width: 480px) {
+            .platforms { flex-direction: column; }
+            .platform { width: 100%; max-width: 300px; }
+            .birthday-text { font-size: 2.5rem; letter-spacing: 3px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti particles -->
+    <div class="confetti" style="top: 10%; left: 20%; background-color: #e74c3c;"></div>
+    <div class="confetti" style="top: 5%; left: 50%; background-color: #26A5E4;"></div>
+    <div class="confetti" style="top: 15%; left: 70%; background-color: #d44638;"></div>
+    <div class="confetti" style="top: 20%; left: 40%; background-color: #f1c40f;"></div>
+    <div class="confetti" style="top: 25%; left: 90%; background-color: #d35400;"></div>
+
+    <!-- Floating balloons -->
+    <div class="balloon" style="background: #e74c3c; top: 10%; left: 5%;"></div>
+    <div class="balloon" style="background: #26A5E4; top: 20%; right: 7%;"></div>
+    <div class="balloon" style="background: #d44638; top: 30%; left: 15%;"></div>
+    <div class="balloon" style="background: #f1c40f; top: 15%; right: 20%;"></div>
+
+    <div class="container">
+        <h1>It is my birthday! 🎉</h1>
+        
+        <div class="birthday-text">Celebrate With Me!</div>
+        
+        <div class="birthday-icon">
+            <i class="fas fa-birthday-cake"></i>
+        </div>
+        
+        <p class="message">
+            Today is my special day and I'd love to hear from you! 
+            Send me your warm birthday wishes through Telegram or Email.
+        </p>
+        
+        <p class="message">
+            Just click your preferred method below to send your message.
+            <span class="highlight">Thank you for making my day extra special!</span>
+        </p>
+        
+        <div class="platforms">
+            <div class="platform telegram" onclick="redirectTo('telegram')">
+                <i class="fab fa-telegram-plane"></i>
+                Telegram Message
+            </div>
+            <div class="platform email" onclick="redirectTo('email')">
+                <i class="fas fa-envelope"></i>
+                Send Email
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <p>Telegram: <span>@Aaron_Teshale</span></p>
+            <p>Email: <span>aaronteshale138@gmail.com</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Create more confetti
+        function createConfetti() {
+            const colors = ['#e74c3c', '#26A5E4', '#d44638', '#f1c40f', '#d35400'];
+            const container = document.body;
+            
+            for (let i = 0; i < 25; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Random properties
+                const size = Math.random() * 12 + 8;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const rotation = Math.random() * 360;
+                
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.backgroundColor = color;
+                confetti.style.left = `${left}%`;
+                confetti.style.top = `${top}%`;
+                confetti.style.opacity = Math.random() * 0.5 + 0.4;
+                confetti.style.transform = `rotate(${rotation}deg)`;
+                
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 4000);
+            }
+        }
+        
+        // Create confetti periodically
+        setInterval(createConfetti, 800);
+        
+        // Animate balloons
+        function animateBalloons() {
+            const balloons = document.querySelectorAll('.balloon');
+            balloons.forEach(balloon => {
+                // Random movement
+                const duration = Math.random() * 25 + 25;
+                const delay = Math.random() * 5;
+                const xMovement = (Math.random() - 0.5) * 150;
+                
+                balloon.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                balloon.style.setProperty('--x-movement', `${xMovement}px`);
+            });
+        }
+        
+        // Add keyframes for balloon animation
+        const styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(`
+            @keyframes float {
+                0% { transform: translateY(0) translateX(0) rotate(0deg); }
+                50% { transform: translateY(-300px) translateX(var(--x-movement)) rotate(10deg); }
+                100% { transform: translateY(-600px) translateX(0) rotate(0deg); }
+            }
+        `, styleSheet.cssRules.length);
+        
+        // Redirect function
+        function redirectTo(platform) {
+            let url;
+            
+            switch(platform) {
+                case 'telegram':
+                    url = 'https://t.me/Aaron_Teshale';
+                    break;
+                case 'email':
+                    url = 'mailto:aaronteshale138@gmail.com?subject=Happy%20Birthday!&body=Wishing%20you%20a%20fantastic%20birthday!%20🎉';
+                    break;
+            }
+            
+            // Create a popup notification
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.left = '50%';
+            notification.style.transform = 'translateX(-50%)';
+            notification.style.backgroundColor = platform === 'telegram' ? '#26A5E4' : '#d44638';
+            notification.style.color = 'white';
+            notification.style.padding = '15px 30px';
+            notification.style.borderRadius = '50px';
+            notification.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+            notification.style.zIndex = '1000';
+            notification.style.fontSize = '1.2rem';
+            notification.style.fontWeight = 'bold';
+            notification.innerHTML = `Opening ${platform === 'telegram' ? 'Telegram' : 'Email'}... <i class="fas fa-spinner fa-spin"></i>`;
+            
+            document.body.appendChild(notification);
+            
+            // Redirect after a short delay
+            setTimeout(() => {
+                window.location.href = url;
+                // Remove notification after redirect
+                setTimeout(() => {
+                    notification.remove();
+                }, 2000);
+            }, 1500);
+        }
+        
+        // Initialize
+        window.onload = function() {
+            animateBalloons();
+            createConfetti();
+        };
+    </script>
+</body>
+</html>
